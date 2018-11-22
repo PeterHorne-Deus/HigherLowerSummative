@@ -144,9 +144,9 @@ public class HigherLowerSummative {
                 
                 numbers.clear();
                 
-                output = 0;
+                
         }
-        System.out.println(output);
+        
         return score;
     }
     
