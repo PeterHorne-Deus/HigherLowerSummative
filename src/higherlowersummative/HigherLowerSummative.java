@@ -1,6 +1,6 @@
 /*
  * Peter Horne-Deus
- * This program will allow the user to have a number print and the user will guess if the next number will be higher or lower
+ * This program will have a number print and the user will guess if the next number will be higher or lower
  * HigherLowerSummative.java
  * November 20, 2018
  */
@@ -23,23 +23,26 @@ public class HigherLowerSummative {
         int randomNumber = 0;
         int userEnterdGuess,userChoice;
         
+        
         //Creating Constents
         final int NUMBER_OF_QUESTIONS = 9;
         
         //Creating Arrays
-        ArrayList userguess = new ArrayList();
-        ArrayList answers = new ArrayList();
+        ArrayList numbers = new ArrayList();
+
         
         //Calling Methods In Order
-        menu(keyedInput);
+        menu(keyedInput,numbers,NUMBER_OF_QUESTIONS);
         
     }
     
-    public static void menu(Scanner keyedInput){
+    public static void menu(Scanner keyedInput,ArrayList numbers, final int NUMBER_OF_QUESTIONS){
         //Creating Variables
         int userChoice,randomNumber = 0;
-        int play = 1;
-        String userEnterdGuess;
+        int play = 1,playGame = 0;
+        int randomNum = 0;
+        int userEnterdGuess,output = 0;
+        int score = 0;
         
         //Outputting options
         while (play == 1){
@@ -51,8 +54,18 @@ public class HigherLowerSummative {
             
             //Running programs 
             if (userChoice == 1){
-                randomNumber = creatingRandomNumber(randomNumber);
-                userEnterdGuess = userGuess(keyedInput,randomNumber);
+                for (int i = 0; i <= NUMBER_OF_QUESTIONS; i++){
+                    randomNum = randomNumber;
+                    randomNumber = creatingRandomNumber(randomNumber);
+                    userEnterdGuess = userGuess(keyedInput,randomNumber);
+                    score = isAnswerCorrect(userEnterdGuess,randomNumber,randomNum,numbers,output,score);
+                    output = output + 1;
+                    if (output > 9){
+                        output = 0;
+                    }
+                        
+                }
+                
                 
             }
             
@@ -62,7 +75,7 @@ public class HigherLowerSummative {
                         + "\n Your job is to guess if the next number will be higher or lower"
                         + "\n The system will output if you were correct or not"
                         + "\n You gain points for every correct answer "
-                        + "\n The game ends when you have 10 correct answers \n");
+                        + "\n The game ends when you have answerd 10 questions \n");
             }
             
             else if (userChoice == 3){
@@ -87,22 +100,61 @@ public class HigherLowerSummative {
         return randomNumber;
     }
     
-    public static String userGuess(Scanner keyedInput, int randomNumber){
+    public static int userGuess(Scanner keyedInput, int randomNumber){
         //Creating Variables
-        String userGuess;
+        int userGuess;
         
         //Prompting user for input
         System.out.println("The Number Is: " + randomNumber);
         
-        System.out.println("Enter A Guess (higher or lower)");
+        System.out.println("Enter A Guess (1 for higher or 2 for lower)");
         
-        userGuess = keyedInput.nextLine();
+        userGuess = keyedInput.nextInt();
         
         return userGuess;
     }
     
-    public static void isAnswerCorrect(){
+    public static int isAnswerCorrect(int userEnterdGuess, int randomNumber,int randomNum,ArrayList numbers,int output,int score){
+        
+        //To see if the user was correct or not and give appropriate score
+        if (randomNumber > randomNum && userEnterdGuess == 1){
+            System.out.println("Well done you got it correct! ");
+            score = score + 1;
+            
+        }
+        else if(randomNumber < randomNum && userEnterdGuess == 2){
+            System.out.println("Well done you got it correct! ");
+            score = score + 1;
+        }
+        else {
+            incorrect();
+        }
         
         
+        numbers.add(randomNumber);
+        
+        if (output == 9){
+            //Output
+                System.out.println("\n \n \n \n ");
+                
+                System.out.println("----------------------------------------------");
+                System.out.println("You got " + score + " correct!\n");
+                
+                System.out.println("The numbers outputed were "+ numbers + "\n \n \n");
+                
+                numbers.clear();
+                
+                output = 0;
+        }
+        System.out.println(output);
+        return score;
     }
+    
+    
+    public static void incorrect(){
+        System.out.println("Sorry You were inncorrect");
+ 
+    }
+    
+    
 }
