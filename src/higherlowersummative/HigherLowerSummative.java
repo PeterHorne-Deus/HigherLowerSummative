@@ -46,7 +46,7 @@ public class HigherLowerSummative {
         //Creating Variables
         int userChoice,randomNumber = 0;
         int play = 1,playGame = 0;
-        int randomNum = (int)Math.round(Math.random()*9 +1);;
+        int randomNum = 0;
         int userEnterdGuess,output = 0;
         int score = 0;
         
@@ -61,9 +61,23 @@ public class HigherLowerSummative {
             //Running programs 
             if (userChoice == 1){
                 for (int i = 0; i <= NUMBER_OF_QUESTIONS; i++){
+                    if (output == 0){
+                    while (output == 0){
+                        randomNumber = (int)Math.round(Math.random()*9 +1);
+                        randomNum = randomNumber;
+                        System.out.println("The Number is " + randomNum);
+                        output = 1;
+                    }
+
+                    randomNumber = (int)Math.round(Math.random()*9 +1);
+                    }
+                    else {
+                
                     randomNum = randomNumber;
-                    randomNumber = creatingRandomNumber(randomNumber);
-                    userEnterdGuess = userGuess(keyedInput,randomNumber);
+                    randomNumber = creatingRandomNumber(randomNumber) ;
+                    }
+                    
+                    userEnterdGuess = userGuess(keyedInput,randomNumber,output);
                     score = isAnswerCorrect(userEnterdGuess,randomNumber,randomNum,numbers,output,score);
                     output = output + 1;
                     
@@ -77,7 +91,8 @@ public class HigherLowerSummative {
             else if (userChoice == 2){
                 //How to play
                 System.out.println("\n The system will output a integer number between 1 and 10"
-                        + "\n Your job is to guess if the next number will be higher or lower"
+                        + "\n Your job is to analyse that number to see if it is higher or lower"
+                        + "\n Then the last number."
                         + "\n The system will output if you were correct or not"
                         + "\n You gain points for every correct answer "
                         + "\n The game ends when you have answerd 10 questions \n");
@@ -116,11 +131,12 @@ public class HigherLowerSummative {
      * @param randomNumber
      * @return userGuess
      */
-    public static int userGuess(Scanner keyedInput, int randomNumber){
+    public static int userGuess(Scanner keyedInput, int randomNumber,int output){
         //Creating Variables
         int userGuess;
         
         //Prompting user for input
+        
         System.out.println("\nThe Number Is: " + randomNumber);
         
         System.out.println("Enter A Guess (1 for higher or 2 for lower)");
