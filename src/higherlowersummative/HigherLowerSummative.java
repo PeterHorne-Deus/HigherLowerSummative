@@ -46,7 +46,7 @@ public class HigherLowerSummative {
         //Creating Variables
         int userChoice,randomNumber = 0;
         int play = 1,playGame = 0;
-        int randomNum = 0;
+        int randomNum = (int)Math.round(Math.random()*9 +1);;
         int userEnterdGuess,output = 0;
         int score = 0;
         
@@ -121,7 +121,7 @@ public class HigherLowerSummative {
         int userGuess;
         
         //Prompting user for input
-        System.out.println("The Number Is: " + randomNumber);
+        System.out.println("\nThe Number Is: " + randomNumber);
         
         System.out.println("Enter A Guess (1 for higher or 2 for lower)");
         
@@ -152,8 +152,14 @@ public class HigherLowerSummative {
             System.out.println("Well done you got it correct! ");
             score = score + 1;
         }
-        else {
+        else if(randomNumber > randomNum && userEnterdGuess == 2){
             incorrect();
+        }
+        else if(randomNumber < randomNum && userEnterdGuess == 1){
+            incorrect();
+        }
+        else {
+            System.out.println("They were the same");
         }
         
         
