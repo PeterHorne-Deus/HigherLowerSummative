@@ -36,6 +36,12 @@ public class HigherLowerSummative {
         
     }
     
+    /**
+     * This program outputs a menu for the user
+     * @param keyedInput
+     * @param numbers
+     * @param NUMBER_OF_QUESTIONS 
+     */
     public static void menu(Scanner keyedInput,ArrayList numbers, final int NUMBER_OF_QUESTIONS){
         //Creating Variables
         int userChoice,randomNumber = 0;
@@ -60,13 +66,12 @@ public class HigherLowerSummative {
                     userEnterdGuess = userGuess(keyedInput,randomNumber);
                     score = isAnswerCorrect(userEnterdGuess,randomNumber,randomNum,numbers,output,score);
                     output = output + 1;
+                    
                     if (output > 9){
                         output = 0;
-                    }
-                        
-                }
-                
-                
+                    }    
+                    
+                } 
             }
             
             else if (userChoice == 2){
@@ -77,7 +82,6 @@ public class HigherLowerSummative {
                         + "\n You gain points for every correct answer "
                         + "\n The game ends when you have answerd 10 questions \n");
             }
-            
             else if (userChoice == 3){
                 System.out.println("BYE!!!!");
                 play = 2;
@@ -90,6 +94,12 @@ public class HigherLowerSummative {
        
     }
     
+    /**
+     * This program creates a random number for later use
+     * @param randomNumber
+     * @return randomNumber
+     */
+    
     public static int creatingRandomNumber(int randomNumber){
         //Variables
         int perameter = 9; 
@@ -100,6 +110,12 @@ public class HigherLowerSummative {
         return randomNumber;
     }
     
+    /**
+     * This program allows the user to enter their guess
+     * @param keyedInput
+     * @param randomNumber
+     * @return userGuess
+     */
     public static int userGuess(Scanner keyedInput, int randomNumber){
         //Creating Variables
         int userGuess;
@@ -114,6 +130,16 @@ public class HigherLowerSummative {
         return userGuess;
     }
     
+    /**
+     * This program checks if the users guess was correct
+     * @param userEnterdGuess
+     * @param randomNumber
+     * @param randomNum
+     * @param numbers
+     * @param output
+     * @param score
+     * @return score
+     */
     public static int isAnswerCorrect(int userEnterdGuess, int randomNumber,int randomNum,ArrayList numbers,int output,int score){
         
         //To see if the user was correct or not and give appropriate score
@@ -135,14 +161,14 @@ public class HigherLowerSummative {
         
         if (output == 9){
             //Output
-                System.out.println("\n \n \n \n ");
+            System.out.println("\n \n \n \n ");
                 
-                System.out.println("----------------------------------------------");
-                System.out.println("You got " + score + " correct!\n");
+            System.out.println("----------------------------------------------");
+            System.out.println("You got " + score + " correct!\n");
                 
-                System.out.println("The numbers outputed were "+ numbers + "\n \n \n");
-                
-                numbers.clear();
+            System.out.println("The numbers outputed were "+ numbers + "\n \n \n");
+               
+            numbers.clear();
                 
                 
         }
@@ -150,8 +176,11 @@ public class HigherLowerSummative {
         return score;
     }
     
-    
+    /**
+     * Outputs an incorrect message
+     */
     public static void incorrect(){
+        //Output message
         System.out.println("Sorry You were inncorrect");
  
     }
