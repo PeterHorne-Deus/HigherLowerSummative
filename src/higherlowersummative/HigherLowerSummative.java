@@ -1,6 +1,6 @@
 /*
  * Peter Horne-Deus
- * This program will have a number print and the user will guess if the next number will be higher or lower
+ * This program will have a number print and the user will guess if the next number is higher or lower
  * HigherLowerSummative.java
  * November 20, 2018
  */
